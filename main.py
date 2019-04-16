@@ -6,10 +6,12 @@ might want to test this on a classmates computer to be sure it works!""
 
 
 # IMPORT STATEMENTS
-
-
+import scipy.signal as sig
+import matplotlib.pyplot as plt
+import numpy as np
+import wave
 
 
 # DEMONSTRATION CODE
-
+# Read in wave file and return y coordinates
 
