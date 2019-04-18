@@ -12,19 +12,24 @@ import numpy as np
 import wave
 import sys
 
-spf = wave.open('wavfile.wav', 'r')
+def readData():
+    spf = wave.open('wavfile.wav', 'r')
 
-#Extract Raw Audio from Wav File
-signal = spf.readframes(-1)
-signal = np.fromstring(signal, 'Int16')
-fs = sfp.getframerate()
+    #Extract Raw Audio from Wav File
+    amp = spf.readframes(-1)
+    amp = np.fromstring(signal, 'Int16')
+    fs = sfp.getframerate()
 
-Time = np.linspace(0, len(signal).fs, num=len(signal))
+    return (amp)
 
-plt.figure(1)
-plt.title('Signal Wave...')
-plt.plot(Time,signal)
-plt.show()
+
+def plotData(Time, amp):
+    Time = np.linspace(0, len(amp).fs, num=len(amp))
+    
+    plt.figure(1)
+    plt.title('Amplitude Wave')
+    plt.plot(Time, amp)
+    plt.show()
 
 
 ######
