@@ -8,31 +8,34 @@ Created on Thu Apr 18 17:13:20 2019
 
 import scipy.signal as sig
 import matplotlib.pyplot as plt
+import plotly.plotly as ply
 import numpy as np
 import wave
 
 def readData():
-    spf = wave.open('PianoF.wav', 'r')
+    spf = wave.open('PianoF.wav', 'r') #import sound file
     #Extract Raw Audio from Wav File
     amp = spf.readframes(-1)
     amp = np.fromstring(amp, 'Int16')
-    fs = spf.getframerate()
+    fs = spf.getframerate() #frames per second
     #Convert Frames to Time
-    Time = np.linspace(0, len(amp)/fs, num=len(amp))
+    time = np.linspace(0, len(amp)/fs, num=len(amp))
+    return (amp, fs, time)
+(amp, fs, time) = readData()
 
-    return (amp, Time)
-(amp, Time) = readData()
-
-def plotData(Time, amp):
+def plotData(time, amp):
     plt.figure(1)
     plt.title('Amplitude Wave')
-    plt.plot(Time, amp)
+    plt.plot(time, amp)
     plt.xlim(2,2.05) #Adjust limits of the x-axis
     plt.ylim(-3000,3000) #Adjust limits of the y-axis
     plt.grid()
     plt.show()
-    
-plotData(Time, amp)
+plotData(time, amp)
+
+def fourier(amp, fs, time):
+    ts = amp / fs
+    ff = 
 
 
 ######
