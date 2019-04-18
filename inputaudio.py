@@ -10,7 +10,6 @@ import scipy.signal as sig
 import matplotlib.pyplot as plt
 import numpy as np
 import wave
-import sys
 
 def readData():
     spf = wave.open('wavfile.wav', 'r')
@@ -19,12 +18,13 @@ def readData():
     amp = spf.readframes(-1)
     amp = np.fromstring(amp, 'Int16')
     fs = spf.getframerate()
+    
+    Time = np.linspace(0, len(amp)/fs, num=len(amp))
 
-    return (amp)
+    return (amp, Time)
 
 
 def plotData(Time, amp):
-    Time = np.linspace(0, len(amp).fs, num=len(amp))
     
     plt.figure(1)
     plt.title('Amplitude Wave')
