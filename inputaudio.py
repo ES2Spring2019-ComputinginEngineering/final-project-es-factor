@@ -27,6 +27,9 @@ def plotData(Time, amp):
     plt.figure(1)
     plt.title('Amplitude Wave')
     plt.plot(Time, amp)
+    plt.xlim(2,2.05) #Adjust limits of the x-axis
+    plt.ylim(-3000,3000) #Adjust limits of the y-axis
+    plt.grid()
     plt.show()
     
 plotData(Time, amp)
