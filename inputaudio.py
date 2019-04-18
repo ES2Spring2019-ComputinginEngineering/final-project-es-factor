@@ -18,7 +18,7 @@ def readData():
     #Extract Raw Audio from Wav File
     amp = spf.readframes(-1)
     amp = np.fromstring(signal, 'Int16')
-    fs = sfp.getframerate()
+    fs = spf.getframerate()
 
     return (amp)
 
