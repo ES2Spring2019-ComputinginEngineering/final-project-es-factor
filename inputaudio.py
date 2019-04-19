@@ -6,7 +6,7 @@ Created on Thu Apr 18 17:13:20 2019
 @author: kristinapuzak
 """
 
-import scipy.signal as sig
+# import scipy.signal as sig
 import matplotlib.pyplot as plt
 # import plotly.plotly as ply
 import numpy as np
@@ -33,8 +33,8 @@ def plotData(time, amp):
     plt.ylabel("Volts/Pressure", fontsize = 30)
     plt.xticks(fontsize = 18)
     plt.yticks(fontsize = 18)
-    plt.xlim(0.6, 0.61) #Adjust limits of the x-axis
-    plt.ylim(-3 * 10**17, 3 * 10**17) #Adjust limits of the y-axis
+    plt.xlim(0.93, 0.94)
+    plt.ylim(-1 * 10**17, 1 * 10**17)
     plt.grid()
     plt.show()
 
