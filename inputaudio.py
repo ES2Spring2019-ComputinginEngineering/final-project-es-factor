@@ -6,7 +6,7 @@ Created on Thu Apr 18 17:13:20 2019
 @author: kristinapuzak
 """
 
-# import scipy.signal as sig
+import scipy.signal as sig
 import matplotlib.pyplot as plt
 # import plotly.plotly as ply
 import numpy as np
@@ -33,17 +33,42 @@ def plotData(time, amp):
     plt.ylabel("Volts/Pressure", fontsize = 30)
     plt.xticks(fontsize = 18)
     plt.yticks(fontsize = 18)
-    plt.xlim(0.93, 0.94)
-    plt.ylim(-1 * 10**17, 1 * 10**17)
+    plt.xlim(0, 5)
+    # plt.ylim(-1 * 10**17, 1 * 10**17)
     plt.grid()
     plt.show()
+
+def findPeaks(amp):
+    peaks, _ = sig.find_peaks(amp)
+    peaks.astype(float)
+    return peaks
+
+def calculatePeriod(peaks):
+    i = 1
+    T = np.array([])
+    while i < len(peaks):
+        T = np.append(T, ((peaks[i])-(peaks[i-1])))
+        i += 1
+    print(T)
+    return T
+
+# def filterPeriod(T):
+    
+    
 
 # def fourier(amp, fs, time):
     # ts = amp / fs
     # ff = 
 
+# frequency = amplitude/time
+
 (amp, fs, time) = readData()
+oned = np.fft.fft(amp)
 plotData(time, amp)
+plotData(time, oned)
+peaks = findPeaks(amp)
+T = calculatePeriod(peaks)
+# plotData(time[:peaks.size], peaks)
 
 ######
 """from scipy.io.wavfile import read
