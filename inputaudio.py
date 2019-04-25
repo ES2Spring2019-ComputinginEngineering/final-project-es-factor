@@ -49,7 +49,7 @@ def calculatePeriod(peaks):
     while i < len(peaks):
         T = np.append(T, ((peaks[i])-(peaks[i-1])))
         i += 1
-    print(T)
+        # print(T, T.size)
     return T
 
 # def filterPeriod(T):
@@ -68,7 +68,7 @@ plotData(time, amp)
 plotData(time, oned)
 peaks = findPeaks(amp)
 T = calculatePeriod(peaks)
-# plotData(time[:peaks.size], peaks)
+plotData(time[:T.size], T)
 
 ######
 """from scipy.io.wavfile import read
