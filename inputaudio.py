@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 # import plotly.plotly as ply
 import numpy as np
 import wave
-import numpy.fft as fft
+import numpy.fftpack as fft
 
 # Imports a sound file and extracts raw audio data (amp) and frames per second
 # (fs) and convert frames per second into number of seconds elapsed (Time).
@@ -40,11 +40,13 @@ def plotData(x, y, xlabel, ylabel):
     plt.grid()
     plt.show()
 
+# Use signal processing module to return an array of peaks
 def findPeaks(amp):
     peaks, _ = sig.find_peaks(amp)
     peaks.astype(float)
     return peaks
 
+# Return the period by finding the average distance between an array of peaks
 def calculatePeriod(peaks):
     i = 1
     period = np.array([])
@@ -54,19 +56,23 @@ def calculatePeriod(peaks):
         # print(T, T.size)
     return period
 
-def simulateFrequencies(funfreq, freq1, freq2):
+# Simulate a complex waveform to test for fundamental frequency
+# https://pages.uoregon.edu/emi/1.php
+def fourierSynthesis(funfreq, freq1, freq2):
     x = 
-    y1 = 
-    y2 = 
-    y3 = 
+    y1 = STRONGESTA * sin(funfreq * x)
+    y2 = weakA * sin(freq1 * x)
+    y3 = weakA * sin(freq2 * x)
     y = 
     plotData(x, y, "Time", "Volts/Pressure")
     return
 
+# Return strength of different frequencies
 def fourier(amp):
     strength = fft.fft(amp)
     return strength
 
+# Retuen the fundamental frequency
 def fundFreq(strength):
     return fundFreq
 
