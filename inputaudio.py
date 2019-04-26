@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 # import plotly.plotly as ply
 import numpy as np
 import wave
+import numpy.fft as fft
 
 # Imports a sound file and extracts raw audio data (amp) and frames per second
 # (fs) and convert frames per second into number of seconds elapsed (Time).
@@ -25,15 +26,16 @@ def readData():
     return (amp, fs, time)
 
 # Plot a time vs amp graph that is zoomed in to see the individual waves
-def plotData(time, amp):
+def plotData(x, y, xlabel, ylabel):
+    title = xlabel + " vs. " + ylabel
     plt.figure(figsize = (20, 10))
-    plt.plot(time, amp)
-    plt.title("Time vs Pressure", fontsize = 30)
-    plt.xlabel("Time", fontsize = 24)
-    plt.ylabel("Volts/Pressure", fontsize = 30)
+    plt.plot(x, y)
+    plt.title(title, fontsize = 30)
+    plt.xlabel(xlabel, fontsize = 24)
+    plt.ylabel(ylabel, fontsize = 30)
     plt.xticks(fontsize = 18)
     plt.yticks(fontsize = 18)
-    plt.xlim(0, 5)
+    # plt.xlim(0, 5)
     # plt.ylim(-1 * 10**17, 1 * 10**17)
     plt.grid()
     plt.show()
@@ -45,30 +47,41 @@ def findPeaks(amp):
 
 def calculatePeriod(peaks):
     i = 1
-    T = np.array([])
+    period = np.array([])
     while i < len(peaks):
-        T = np.append(T, ((peaks[i])-(peaks[i-1])))
+        period = np.append(period, ((peaks[i])-(peaks[i-1])))
         i += 1
         # print(T, T.size)
-    return T
+    return period
+
+def simulateFrequencies(funfreq, freq1, freq2):
+    x = 
+    y1 = 
+    y2 = 
+    y3 = 
+    y = 
+    plotData(x, y, "Time", "Volts/Pressure")
+    return
+
+def fourier(amp):
+    strength = fft.fft(amp)
+    return strength
+
+def fundFreq(strength):
+    return fundFreq
 
 # def filterPeriod(T):
-    
-    
+# def autoZoom
+# def plot3D
+# fourier = hertz vs strength
+# check by simulating sine waves
 
-# def fourier(amp, fs, time):
-    # ts = amp / fs
-    # ff = 
-
-# frequency = amplitude/time
-
-(amp, fs, time) = readData()
-oned = np.fft.fft(amp)
-plotData(time, amp)
-plotData(time, oned)
-peaks = findPeaks(amp)
-T = calculatePeriod(peaks)
-plotData(time[:T.size], T)
+def main():
+    amp, fs, time = readData()
+    plotDataFile(time, amp, "Time", "Volts/Pressure")
+    strength = fourierTrans(amp)
+    plotDataFile(time, strength, "Frequency", "Strength")
+    return 0
 
 ######
 """from scipy.io.wavfile import read
