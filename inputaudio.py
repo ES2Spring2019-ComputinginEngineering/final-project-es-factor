@@ -20,7 +20,7 @@ import numpy.fft as fft
 def readData():
     spf = wave.open("PianoF.wav", 'r')
     amp = spf.readframes(-1)
-    amp = np.frombuffer(amp, "Int64")
+    amp = np.frombuffer(amp, "Int32")
     fs = spf.getframerate()
     time = np.linspace(0, len(amp)/fs, num=len(amp))
     return (amp, fs, time)
@@ -73,8 +73,9 @@ def fourier(amp):
 
 # Retuen the fundamental frequency
 def fundFreq(strength, FREQUENCY):
-    Max = np.argmax(strength)
-    fundFreq = FREQUENCY[Max]
+    pks = findPeaks(amp)
+    index = np.argsort(amp)
+    fundFreq = 1/FREQUENCY[pks[index[2]]]
     return fundFreq
 
 # def filterPeriod(T):
