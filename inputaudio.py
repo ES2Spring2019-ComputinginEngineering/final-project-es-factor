@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 # import plotly.plotly as ply
 import numpy as np
 import wave
-import numpy.fftpack as fft
+import numpy.fft as fft
 
 # Imports a sound file and extracts raw audio data (amp) and frames per second
 # (fs) and convert frames per second into number of seconds elapsed (Time).
@@ -56,8 +56,7 @@ def calculatePeriod(peaks):
         # print(T, T.size)
     return period
 
-# Simulate a complex waveform to test for fundamental frequency
-# https://pages.uoregon.edu/emi/1.php
+"""# Simulate a complex waveform to test for fundamental frequency
 def fourierSynthesis(funfreq, freq1, freq2):
     x = 
     y1 = STRONGESTA * sin(funfreq * x)
@@ -65,16 +64,17 @@ def fourierSynthesis(funfreq, freq1, freq2):
     y3 = weakA * sin(freq2 * x)
     y = y1 + y2 + y3
     plotData(x, y, "Time", "Volts/Pressure")
-    return
-#check if this is correct
+    return"""
+
 # Return strength of different frequencies
 def fourier(amp):
     strength = fft.fft(amp)
     return strength
 
 # Retuen the fundamental frequency
-def fundFreq(strength):
-    np.armax(strength)
+def fundFreq(strength, FREQUENCY):
+    Max = np.argmax(strength)
+    fundFreq = FREQUENCY[Max]
     return fundFreq
 
 # def filterPeriod(T):
@@ -83,12 +83,14 @@ def fundFreq(strength):
 # fourier = hertz vs strength
 # check by simulating sine waves
 
-def main():
-    amp, fs, time = readData()
-    plotDataFile(time, amp, "Time", "Volts/Pressure")
-    strength = fourierTrans(amp)
-    plotDataFile(time, strength, "Frequency", "Strength")
-    return 0
+
+amp, fs, time = readData()
+plotData(time, amp, "Time", "Volts/Pressure")
+strength = fourier(amp)
+FREQUENCY = 1/calculatePeriod(findPeaks(amp))
+plotData(FREQUENCY, strength, "Frequency", "Strength")
+FF = fundFreq(strength, FREQUENCY)
+print(FF)
 
 ######
 """from scipy.io.wavfile import read
