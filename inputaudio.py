@@ -87,7 +87,7 @@ def fundFreq(strength, FREQUENCY):
 amp, fs, time = readData()
 plotData(time, amp, "Time", "Volts/Pressure")
 strength = fourier(amp)
-FREQUENCY = 1/calculatePeriod(findPeaks(amp))
+FREQUENCY = fft.fftfreq(amp.size)
 plotData(FREQUENCY, strength, "Frequency", "Strength")
 FF = fundFreq(strength, FREQUENCY)
 print(FF)
