@@ -63,10 +63,10 @@ def fourierSynthesis(funfreq, freq1, freq2):
     y1 = STRONGESTA * sin(funfreq * x)
     y2 = weakA * sin(freq1 * x)
     y3 = weakA * sin(freq2 * x)
-    y = 
+    y = y1 + y2 + y3
     plotData(x, y, "Time", "Volts/Pressure")
     return
-
+#check if this is correct
 # Return strength of different frequencies
 def fourier(amp):
     strength = fft.fft(amp)
@@ -74,6 +74,7 @@ def fourier(amp):
 
 # Retuen the fundamental frequency
 def fundFreq(strength):
+    np.armax(strength)
     return fundFreq
 
 # def filterPeriod(T):
