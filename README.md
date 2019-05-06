@@ -34,3 +34,32 @@ The notes should be the same, but the program runs if they are not
 inputaudio: Module that contains functions that parse sound files, plot 2-D graphs, and determine fundamental frequency
 
 main: Calls inputaudio module and graphs the raw soundwaves, fourier transformations, and sinusoidal waves with the given frequencies of data from the sound file, a simulated complex waveform, and the actual frequency
+
+# Libraries
+
+Libraries used include:
+-matplotlib.pyplot
+-numpy.fft
+-numpy
+-wave
+
+# Functions
+
+Important functions used include:
+readData(note)
+-parses data from sound file
+
+plotData(x, y, xlabel, ylabel)
+-plots the data
+
+fourier(amp)
+-determines strength of each frequency
+
+fundFreq(strength, freq)
+-determines the fundamental frequency
+
+fourierSynthesis(note, time)
+-simulates a complex wave form to test for fundamental frequency
+
+
+
