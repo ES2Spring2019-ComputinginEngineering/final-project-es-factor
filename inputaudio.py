@@ -13,12 +13,21 @@ import numpy as np
 import wave
 import numpy.fft as fft
 
+F4 = 349.23
+G4 = 392.00
+Ab4 = 415.30
+A4 = 440
+Bb4 = 466.16
+B4 = 493.88
+C5 = 523.25
+
 # Imports a sound file and extracts raw audio data (amp) and frames per second
 # (fs) and convert frames per second into number of seconds elapsed (Time).
 # Returns the y-value as a numpy array of int64, number of frames per second, 
 # and amount of time elapsed
-def readData():
-    spf = wave.open("PianoC5.wav", 'r')
+def readData(note):
+    filename = "Piano" + note + ".wav"
+    spf = wave.open(filename, 'r')
     amp = spf.readframes(-1)
     amp = np.frombuffer(amp, "Int32")
     fs = spf.getframerate()
@@ -35,7 +44,7 @@ def plotData(x, y, xlabel, ylabel):
     plt.ylabel(ylabel, fontsize = 30)
     plt.xticks(fontsize = 18)
     plt.yticks(fontsize = 18)
-    plt.xlim(-.1, .1)
+    # plt.xlim(-.1, .1)
     # plt.ylim(-1 * 10**17, 1 * 10**17)
     plt.grid()
     plt.show()
@@ -56,16 +65,6 @@ def calculatePeriod(peaks):
         # print(T, T.size)
     return period
 
-"""# Simulate a complex waveform to test for fundamental frequency
-def fourierSynthesis(funfreq):
-    freq1, freq 2 = randint
-    x = 
-    y1 = STRONGESTA * sin(funfreq * x)
-    y2 = weakA * sin(freq1 * x)
-    y3 = weakA * sin(freq2 * x)
-    y = y1 + y2 + y3
-    plotData(x, y, "Time", "Volts/Pressure")
-    return"""
 
 # Return strength of different frequencies
 def fourier(amp):
@@ -73,31 +72,37 @@ def fourier(amp):
     return strength
 
 # Retuen the fundamental frequency
-def fundFreq(strength, FREQUENCY):
+def fundFreq(strength, freq):
     index = np.argsort(strength)
-    fundFreq = abs(174.02 * FREQUENCY[index[2]]/0.003954)
+    fundFreq = abs(174.02 * freq[index[0]]/0.003954)
     return fundFreq
+
+# Simulate a complex waveform to test for fundamental frequency
+def fourierSynthesis(note, time):
+    freq1 = np.random.randint(300, 600)
+    freq2 = np.random.randint(300, 600)
+    x = time
+    y1 = 2 * 10**12 * np.sin(note * x)
+    y2 = 2 * 10**11 * np.sin(freq1 * x)
+    y3 = 2 * 10**11 * np.sin(freq2 * x)
+    y = y1 + y2 + y3
+    plotData(x, y, "Time", "Volts/Pressure of Simulation")
+    return y
+
+
+
+# found = [0.007946, 0.00891, 0.0094657, 0.0100, 0.01059, 0.011219, 0.0119]
+# known =[349.23, 392, 415.30, 440, 466.16, 493.83, 523.25]
+# found = [55.48685, 62.2973, 65.986, 64.81286, 74.05089, 78.44995, 83.113]
+# plt.figure(figsize = (20, 10))
+# plt.plot(found, known)
+
 
 # def filterPeriod(T):
 # def autoZoom
 # def plot3D
 # fourier = hertz vs strength
 # check by simulating sine waves
-
-amp, fs, time = readData()
-#plotData(time, amp, "Time", "Volts/Pressure")
-strength = fourier(amp)
-FREQUENCY = fft.fftfreq(amp.size)
-plotData(FREQUENCY, strength, "Frequency", "Strength")
-FF = fundFreq(strength, FREQUENCY)
-print(FF)
-
-"""
-found = [0.007946, 0.00891, 0.0094657, 0.0100, 0.01059, 0.011219, 0.0119]
-known =[349.23, 392, 415.30, 440, 466.16, 493.83, 523.25]
-plt.figure(figsize = (20, 10))
-plt.plot(found, known)
-"""
 
 ######
 """from scipy.io.wavfile import read
