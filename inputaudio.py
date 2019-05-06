@@ -35,7 +35,7 @@ def plotData(x, y, xlabel, ylabel):
     plt.ylabel(ylabel, fontsize = 30)
     plt.xticks(fontsize = 18)
     plt.yticks(fontsize = 18)
-    # plt.xlim(0, 5)
+    plt.xlim(-.1, .1)
     # plt.ylim(-1 * 10**17, 1 * 10**17)
     plt.grid()
     plt.show()
@@ -74,9 +74,8 @@ def fourier(amp):
 
 # Retuen the fundamental frequency
 def fundFreq(strength, FREQUENCY):
-    pks = findPeaks(amp)
-    index = np.argsort(amp)
-    fundFreq = FREQUENCY[pks[index[2]]]
+    index = np.argsort(strength)
+    fundFreq = abs(174.02 * FREQUENCY[index[2]]/0.003954)
     return fundFreq
 
 # def filterPeriod(T):
@@ -85,14 +84,20 @@ def fundFreq(strength, FREQUENCY):
 # fourier = hertz vs strength
 # check by simulating sine waves
 
-
 amp, fs, time = readData()
-plotData(time, amp, "Time", "Volts/Pressure")
+#plotData(time, amp, "Time", "Volts/Pressure")
 strength = fourier(amp)
 FREQUENCY = fft.fftfreq(amp.size)
 plotData(FREQUENCY, strength, "Frequency", "Strength")
 FF = fundFreq(strength, FREQUENCY)
 print(FF)
+
+"""
+found = [0.007946, 0.00891, 0.0094657, 0.0100, 0.01059, 0.011219, 0.0119]
+known =[349.23, 392, 415.30, 440, 466.16, 493.83, 523.25]
+plt.figure(figsize = (20, 10))
+plt.plot(found, known)
+"""
 
 ######
 """from scipy.io.wavfile import read
