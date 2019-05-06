@@ -1,9 +1,13 @@
 # Project Title
 
 This program is designed to:
+
 -Read a WAV sound file and plot it as a amplitude vs. time graph
+
 -Create an amplitude vs. frequency graph from the amplitude vs. time graph
+
 -Create a function which can determine the fundamental frequency from an amplitude vs. frequency graph
+
 -Print out the fundamental frequency derived from the function
 
 The program will produce seven graphs:
