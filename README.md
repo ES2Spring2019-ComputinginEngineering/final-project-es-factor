@@ -1,4 +1,4 @@
-# Project Title
+# Frequencies of a .wav file
 
 This program is designed to:
 
