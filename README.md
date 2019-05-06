@@ -7,8 +7,8 @@ This program is designed to:
 -Create an amplitude vs. frequency graph from the amplitude vs. time graph
 
 -Create a function which can determine the fundamental frequency from an amplitude vs. frequency graph
-
 -Print out the fundamental frequency derived from the function
+
 
 The program will produce seven graphs:
 1) sound wave from sound file you inputted on line 22
