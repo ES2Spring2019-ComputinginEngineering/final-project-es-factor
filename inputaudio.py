@@ -89,8 +89,6 @@ def fourierSynthesis(note, time):
     plotData(x, y, "Time", "Volts/Pressure of Simulation")
     return y
 
-
-
 # found = [0.007946, 0.00891, 0.0094657, 0.0100, 0.01059, 0.011219, 0.0119]
 # known =[349.23, 392, 415.30, 440, 466.16, 493.83, 523.25]
 # found = [55.48685, 62.2973, 65.986, 64.81286, 74.05089, 78.44995, 83.113]
