@@ -38,27 +38,37 @@ main: Calls inputaudio module and graphs the raw soundwaves, fourier transformat
 # Libraries
 
 Libraries used include:
+
 -matplotlib.pyplot
+
 -numpy.fft
+
 -numpy
+
 -wave
 
 # Functions
 
 Important functions used include:
+
 readData(note)
+
 -parses data from sound file
 
 plotData(x, y, xlabel, ylabel)
+
 -plots the data
 
 fourier(amp)
+
 -determines strength of each frequency
 
 fundFreq(strength, freq)
+
 -determines the fundamental frequency
 
 fourierSynthesis(note, time)
+
 -simulates a complex wave form to test for fundamental frequency
 
 
