@@ -18,7 +18,7 @@ import numpy.fft as fft
 # Returns the y-value as a numpy array of int64, number of frames per second, 
 # and amount of time elapsed
 def readData():
-    spf = wave.open("PianoF.wav", 'r')
+    spf = wave.open("PianoC5.wav", 'r')
     amp = spf.readframes(-1)
     amp = np.frombuffer(amp, "Int32")
     fs = spf.getframerate()
@@ -57,7 +57,8 @@ def calculatePeriod(peaks):
     return period
 
 """# Simulate a complex waveform to test for fundamental frequency
-def fourierSynthesis(funfreq, freq1, freq2):
+def fourierSynthesis(funfreq):
+    freq1, freq 2 = randint
     x = 
     y1 = STRONGESTA * sin(funfreq * x)
     y2 = weakA * sin(freq1 * x)
@@ -75,7 +76,7 @@ def fourier(amp):
 def fundFreq(strength, FREQUENCY):
     pks = findPeaks(amp)
     index = np.argsort(amp)
-    fundFreq = 1/FREQUENCY[pks[index[2]]]
+    fundFreq = FREQUENCY[pks[index[2]]]
     return fundFreq
 
 # def filterPeriod(T):
